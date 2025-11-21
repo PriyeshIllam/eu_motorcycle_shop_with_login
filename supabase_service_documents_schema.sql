@@ -91,6 +91,16 @@ FOR DELETE
 TO authenticated
 USING (auth.uid() = user_id);
 
+-- Create or replace the function to update the updated_at timestamp
+-- (Uses CREATE OR REPLACE in case it already exists from other tables)
+CREATE OR REPLACE FUNCTION public.update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = TIMEZONE('utc', NOW());
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
 -- Create trigger to automatically update updated_at
 CREATE TRIGGER update_service_documents_updated_at
 BEFORE UPDATE ON public.service_documents
