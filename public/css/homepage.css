@@ -82,6 +82,21 @@
   cursor: pointer;
   min-width: 200px;
 }
+.controls .profile-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+.controls .profile-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
 .controls .logout-button {
   padding: 12px 24px;
   font-size: 16px;
@@ -247,6 +262,7 @@
   }
   .controls .search-box,
   .controls select,
+  .controls .profile-button,
   .controls .logout-button {
     width: 100%;
   }
