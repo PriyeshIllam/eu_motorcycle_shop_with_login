@@ -155,10 +155,19 @@ export const BikerProfile: React.FC<BikerProfileProps> = ({ onBack, onLogout }) 
 
                 if (updateError) throw updateError;
             } else {
-                // Insert new motorcycle
+                // Insert new motorcycle - need to add user_id
+                const { data: { user } } = await supabase.auth.getUser();
+
+                if (!user) {
+                    throw new Error('User not authenticated');
+                }
+
                 const { error: insertError } = await supabase
                     .from('biker_motorcycles')
-                    .insert([motorcycleData]);
+                    .insert([{
+                        ...motorcycleData,
+                        user_id: user.id
+                    }]);
 
                 if (insertError) throw insertError;
             }

@@ -36534,7 +36534,14 @@ ${suffix}`;
           if (updateError)
             throw updateError;
         } else {
-          const { error: insertError } = await supabase.from("biker_motorcycles").insert([motorcycleData]);
+          const { data: { user } } = await supabase.auth.getUser();
+          if (!user) {
+            throw new Error("User not authenticated");
+          }
+          const { error: insertError } = await supabase.from("biker_motorcycles").insert([{
+            ...motorcycleData,
+            user_id: user.id
+          }]);
           if (insertError)
             throw insertError;
         }
