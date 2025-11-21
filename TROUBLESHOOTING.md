@@ -1,5 +1,30 @@
 # Troubleshooting Guide
 
+## Issue: "process is not defined" Error
+
+If you see this error in the browser console:
+```
+Uncaught ReferenceError: process is not defined
+```
+
+**This means the application was not rebuilt after setting up environment variables.**
+
+**Solution:**
+1. Make sure your `.env` file exists with real Supabase credentials (not placeholders)
+2. **Rebuild the application**:
+   ```bash
+   npm run build
+   ```
+3. **Restart the server**:
+   ```bash
+   npm start
+   ```
+4. Hard refresh your browser: `Ctrl+F5` (Windows/Linux) or `Cmd+Shift+R` (Mac)
+
+The build process injects environment variables into the bundle. If you update `.env`, you **must rebuild**.
+
+---
+
 ## Issue: Empty Page with Background
 
 If you see only the background gradient with no login form, follow these debugging steps:

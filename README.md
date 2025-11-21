@@ -182,7 +182,8 @@ For detailed troubleshooting steps, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.m
 
 ### Common Issues
 
-- **"Missing Supabase environment variables"**: Your `.env` file has placeholder values. Update with real credentials.
+- **"process is not defined" error**: You need to rebuild after updating `.env` - Run `npm run build` then restart
+- **"Missing Supabase environment variables"**: Your `.env` file has placeholder values. Update with real credentials and rebuild
 - **Files not loading**: Run `npm run build` to regenerate bundle.js and CSS files
 - **Cached files**: Hard refresh with `Ctrl+F5` (Windows/Linux) or `Cmd+Shift+R` (Mac)
 - **Empty page on Vercel**: Environment variables not set in Vercel dashboard
