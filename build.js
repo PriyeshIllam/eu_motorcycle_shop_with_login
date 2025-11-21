@@ -31,13 +31,23 @@ function loadEnv(filePath) {
     }
 }
 
-// Load environment variables
+// Load environment variables from .env file (for local development)
 const envPath = path.join(__dirname, '.env');
-const envVars = loadEnv(envPath);
+const fileEnvVars = loadEnv(envPath);
+
+// Merge with process.env (for Vercel and other platforms)
+// process.env takes precedence over .env file
+const envVars = {
+    ...fileEnvVars,
+    // Only add process.env variables that we care about
+    ...(process.env.SUPABASE_URL && { SUPABASE_URL: process.env.SUPABASE_URL }),
+    ...(process.env.SUPABASE_ANON_KEY && { SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY })
+};
 
 // Log loaded environment variables (without showing values)
 console.log('🔧 Building application...');
 console.log('📦 Environment variables loaded:', Object.keys(envVars).length > 0 ? Object.keys(envVars).join(', ') : 'None');
+console.log('📍 Source:', process.env.VERCEL ? 'Vercel platform' : '.env file');
 
 // Create define object for esbuild
 const define = {};
@@ -50,7 +60,11 @@ if (!envVars.SUPABASE_URL || !envVars.SUPABASE_ANON_KEY) {
     console.warn('⚠️  Warning: Missing Supabase environment variables!');
     console.warn('   - SUPABASE_URL:', envVars.SUPABASE_URL ? '✓' : '✗');
     console.warn('   - SUPABASE_ANON_KEY:', envVars.SUPABASE_ANON_KEY ? '✓' : '✗');
-    console.warn('📝 Please update your .env file. See SUPABASE_SETUP.md for instructions.');
+    if (process.env.VERCEL) {
+        console.warn('📝 Please add environment variables in Vercel Dashboard → Settings → Environment Variables');
+    } else {
+        console.warn('📝 Please update your .env file. See SUPABASE_SETUP.md for instructions.');
+    }
 }
 
 // Check if watch mode is requested
