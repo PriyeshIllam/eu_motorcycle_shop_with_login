@@ -1,0 +1,27 @@
+{
+  "name": "eu-motorcycle-shop-login",
+  "version": "1.0.0",
+  "description": "Motorcycle shop login application",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "sass src/styles/login.scss public/css/login.css",
+    "build:ts": "tsc",
+    "build": "npm run build:css && npm run build:ts",
+    "watch:css": "sass --watch src/styles/login.scss:public/css/login.css",
+    "watch:ts": "tsc --watch",
+    "dev": "npm run build && npm run watch:css & npm run watch:ts",
+    "start": "npm run build && npx http-server public -p 8080"
+  },
+  "keywords": [
+    "login",
+    "typescript",
+    "sass"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "sass": "^1.69.0",
+    "http-server": "^14.1.1"
+  }
+}
