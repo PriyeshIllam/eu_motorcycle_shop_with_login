@@ -5,9 +5,10 @@ import { RegisterForm } from './RegisterForm';
 import { HomePage } from './HomePage';
 import { BikerProfile } from './BikerProfile';
 import { ServiceDocuments } from './ServiceDocuments';
+import { BookingRequest } from './BookingRequest';
 import { BikerMotorcycle } from '../types/biker-motorcycle';
 
-type ViewMode = 'login' | 'register' | 'home' | 'profile' | 'serviceDocs';
+type ViewMode = 'login' | 'register' | 'home' | 'profile' | 'serviceDocs' | 'bookingRequest';
 
 export const App: React.FC = () => {
     const [view, setView] = useState<ViewMode>('login');
@@ -68,6 +69,14 @@ export const App: React.FC = () => {
         setView('profile');
     };
 
+    const handleViewBookingRequest = () => {
+        setView('bookingRequest');
+    };
+
+    const handleBackToHome = () => {
+        setView('home');
+    };
+
     if (loading) {
         return (
             <div style={{
@@ -84,7 +93,9 @@ export const App: React.FC = () => {
 
     return (
         <>
-            {view === 'serviceDocs' && selectedMotorcycle ? (
+            {view === 'bookingRequest' ? (
+                <BookingRequest onBack={handleBackToHome} />
+            ) : view === 'serviceDocs' && selectedMotorcycle ? (
                 <ServiceDocuments
                     motorcycle={selectedMotorcycle}
                     onBack={handleBackToProfile}
@@ -99,6 +110,7 @@ export const App: React.FC = () => {
                 <HomePage
                     onLogout={handleLogout}
                     onViewProfile={() => setView('profile')}
+                    onViewBookingRequest={handleViewBookingRequest}
                 />
             ) : view === 'login' ? (
                 <LoginForm
