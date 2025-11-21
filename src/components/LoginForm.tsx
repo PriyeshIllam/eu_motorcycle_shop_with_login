@@ -5,9 +5,10 @@ import { supabase } from '../lib/supabase';
 
 interface LoginFormProps {
     onSwitchToRegister?: () => void;
+    onLoginSuccess?: () => void;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
+export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister, onLoginSuccess }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
@@ -87,11 +88,18 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
                     localStorage.removeItem('rememberedEmail');
                 }
 
-                setSuccessMessage('Login successful! Redirecting...');
+                setSuccessMessage('Login successful!');
 
-                setTimeout(() => {
-                    window.location.href = '/dashboard.html';
-                }, 1500);
+                // Call the success callback if provided, otherwise redirect
+                if (onLoginSuccess) {
+                    setTimeout(() => {
+                        onLoginSuccess();
+                    }, 500);
+                } else {
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 1500);
+                }
             }
         } catch (error) {
             setErrorMessage('An error occurred. Please try again later.');

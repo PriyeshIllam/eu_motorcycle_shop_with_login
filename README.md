@@ -6,8 +6,16 @@ A React + TypeScript (TSX) authentication application with Supabase backend, SAS
 
 - Modern, responsive login and registration pages built with React
 - **Supabase Authentication** integration for secure user management
+- **Homepage**: EU Motorcycle Repair Shop Directory
+  - Browse motorcycle repair shops across Europe
+  - Search by name, city, or address
+  - Filter by country, city, and rating
+  - View shop details including address, phone, hours, and ratings
+  - Pagination with "Load More" functionality
+  - Real-time statistics (total shops, countries, visible count)
 - User registration with email confirmation
 - Login with email and password
+- Session management with automatic login/logout
 - TypeScript + TSX for type-safe component development
 - Component-based architecture for reusability
 - SASS for organized and maintainable styles
@@ -22,16 +30,20 @@ A React + TypeScript (TSX) authentication application with Supabase backend, SAS
 eu_motorcycle_shop_with_login/
 ├── src/
 │   ├── components/            # React components
-│   │   ├── App.tsx           # Main app component with view switching
+│   │   ├── App.tsx           # Main app component with auth and routing
+│   │   ├── HomePage.tsx      # Motorcycle shop directory
 │   │   ├── LoginForm.tsx     # Login form container
 │   │   ├── RegisterForm.tsx  # Registration form container
 │   │   ├── FormInput.tsx     # Reusable input component
 │   │   └── LoginButton.tsx   # Submit button component
+│   ├── types/
+│   │   └── motorcycle-shop.ts # TypeScript types for shop data
 │   ├── lib/
 │   │   └── supabase.ts       # Supabase client configuration
 │   ├── index.tsx             # Application entry point
 │   └── styles/
-│       └── login.scss        # SASS styles
+│       ├── login.scss        # Login/Register page styles
+│       └── homepage.scss     # Homepage styles
 ├── public/
 │   ├── index.html            # HTML template with React root
 │   ├── css/                  # Compiled CSS (generated)
@@ -115,7 +127,7 @@ npm start
 
 Then open your browser to `http://localhost:8080`
 
-## Authentication Flow
+## Application Flow
 
 1. **Register**: Create a new account with email and password
    - Fill in your full name, email, and password
@@ -128,6 +140,14 @@ Then open your browser to `http://localhost:8080`
    - Enter your email and password
    - Optionally check "Remember me" to save your email
    - Submit to login
+   - Upon successful login, you'll be redirected to the homepage
+
+3. **Homepage**: Browse the motorcycle shop directory
+   - View all motorcycle repair shops across Europe
+   - Use search to find shops by name, city, or address
+   - Filter by country, city, and rating
+   - Click "Load More" to see additional shops
+   - Click "Logout" to sign out
 
 ## Technologies Used
 
@@ -140,7 +160,8 @@ Then open your browser to `http://localhost:8080`
 
 ## Component Structure
 
-- **App.tsx**: Main application component with view switching (login/register)
+- **App.tsx**: Main application component with authentication state management and routing
+- **HomePage.tsx**: Motorcycle shop directory with search, filters, and pagination
 - **LoginForm.tsx**: Login form with Supabase authentication
 - **RegisterForm.tsx**: Registration form with email validation and password confirmation
 - **FormInput.tsx**: Reusable input field component with validation and error states
