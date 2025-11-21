@@ -225,6 +225,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onLogout }) => {
         return div.innerHTML;
     };
 
+    const getGoogleMapsUrl = (shop: MotorcycleShop): string => {
+        // Priority 1: Use place_id if available (most accurate)
+        if (shop.place_id) {
+            return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(shop.name)}&query_place_id=${encodeURIComponent(shop.place_id)}`;
+        }
+
+        // Priority 2: Use latitude and longitude if available
+        if (shop.latitude && shop.longitude) {
+            return `https://www.google.com/maps/search/?api=1&query=${shop.latitude},${shop.longitude}`;
+        }
+
+        // Priority 3: Fallback to address-based search
+        const searchQuery = [
+            shop.name,
+            shop.address,
+            shop.city,
+            shop.country
+        ].filter(Boolean).join(', ');
+
+        return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(searchQuery)}`;
+    };
+
     return (
         <div className="homepage-container">
             <header className="homepage-header">
@@ -338,16 +360,26 @@ export const HomePage: React.FC<HomePageProps> = ({ onLogout }) => {
                                     </div>
                                 )}
 
-                                {shop.website && (
+                                <div className="shop-actions">
                                     <a
-                                        href={escapeHtml(shop.website)}
+                                        href={getGoogleMapsUrl(shop)}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="shop-website"
+                                        className="google-maps-button"
                                     >
-                                        Visit Website →
+                                        📍 Google Map
                                     </a>
-                                )}
+                                    {shop.website && (
+                                        <a
+                                            href={escapeHtml(shop.website)}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="shop-website"
+                                        >
+                                            Visit Website →
+                                        </a>
+                                    )}
+                                </div>
                             </div>
                         ))}
                     </div>

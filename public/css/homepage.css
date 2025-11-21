@@ -159,9 +159,28 @@
   color: #ffc107;
   margin-right: 5px;
 }
+.shop-card .shop-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+.shop-card .google-maps-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #34A853;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+.shop-card .google-maps-button:hover {
+  background: #2d8e47;
+}
 .shop-card .shop-website {
   display: inline-block;
-  margin-top: 10px;
   padding: 8px 16px;
   background: #4472C4;
   color: white;

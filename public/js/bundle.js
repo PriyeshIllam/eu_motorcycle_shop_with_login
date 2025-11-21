@@ -36317,6 +36317,21 @@ ${suffix}`;
       div.textContent = text;
       return div.innerHTML;
     };
+    const getGoogleMapsUrl = (shop) => {
+      if (shop.place_id) {
+        return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(shop.name)}&query_place_id=${encodeURIComponent(shop.place_id)}`;
+      }
+      if (shop.latitude && shop.longitude) {
+        return `https://www.google.com/maps/search/?api=1&query=${shop.latitude},${shop.longitude}`;
+      }
+      const searchQuery = [
+        shop.name,
+        shop.address,
+        shop.city,
+        shop.country
+      ].filter(Boolean).join(", ");
+      return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(searchQuery)}`;
+    };
     return /* @__PURE__ */ import_react5.default.createElement("div", { className: "homepage-container" }, /* @__PURE__ */ import_react5.default.createElement("header", { className: "homepage-header" }, /* @__PURE__ */ import_react5.default.createElement("h1", null, "\u{1F3CD}\uFE0F EU Motorcycle Repair Directory"), /* @__PURE__ */ import_react5.default.createElement("p", null, "Find motorcycle repair shops across Europe"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "powered-by" }, "\u26A1 Powered by Supabase"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "stats" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "stat-item" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "stat-number" }, stats.totalShops.toLocaleString()), /* @__PURE__ */ import_react5.default.createElement("span", { className: "stat-label" }, "Repair Shops")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "stat-item" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "stat-number" }, stats.totalCountries), /* @__PURE__ */ import_react5.default.createElement("span", { className: "stat-label" }, "Countries")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "stat-item" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "stat-number" }, stats.visibleShops.toLocaleString()), /* @__PURE__ */ import_react5.default.createElement("span", { className: "stat-label" }, "Showing")))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "controls" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "search-box" }, /* @__PURE__ */ import_react5.default.createElement(
       "input",
       {
@@ -36351,7 +36366,16 @@ ${suffix}`;
       /* @__PURE__ */ import_react5.default.createElement("option", { value: "4.5" }, "4.5+ Stars"),
       /* @__PURE__ */ import_react5.default.createElement("option", { value: "4.0" }, "4.0+ Stars"),
       /* @__PURE__ */ import_react5.default.createElement("option", { value: "3.5" }, "3.5+ Stars")
-    ), onLogout && /* @__PURE__ */ import_react5.default.createElement("button", { className: "logout-button", onClick: onLogout }, "Logout")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "content" }, error && /* @__PURE__ */ import_react5.default.createElement("div", { className: "error-message" }, /* @__PURE__ */ import_react5.default.createElement("strong", null, "Error:"), " ", error), loading && currentPage === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "loading" }, "Loading motorcycle shops...") : displayedShops.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "no-results" }, "No shops found matching your criteria.") : /* @__PURE__ */ import_react5.default.createElement("div", { className: "shops-grid" }, displayedShops.map((shop) => /* @__PURE__ */ import_react5.default.createElement("div", { key: shop.id, className: "shop-card" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-name", dangerouslySetInnerHTML: { __html: escapeHtml(shop.name) } }), /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-location" }, "\u{1F4CD} ", escapeHtml(shop.city), ", ", escapeHtml(shop.country)), shop.address && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F3E0}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.address) } })), shop.phone && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F4DE}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.phone) } })), shop.hours && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F550}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.hours) } })), shop.rating && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-rating" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "star" }, "\u2B50"), shop.rating, " (", shop.reviews_count, " reviews)"), shop.website && /* @__PURE__ */ import_react5.default.createElement(
+    ), onLogout && /* @__PURE__ */ import_react5.default.createElement("button", { className: "logout-button", onClick: onLogout }, "Logout")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "content" }, error && /* @__PURE__ */ import_react5.default.createElement("div", { className: "error-message" }, /* @__PURE__ */ import_react5.default.createElement("strong", null, "Error:"), " ", error), loading && currentPage === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "loading" }, "Loading motorcycle shops...") : displayedShops.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "no-results" }, "No shops found matching your criteria.") : /* @__PURE__ */ import_react5.default.createElement("div", { className: "shops-grid" }, displayedShops.map((shop) => /* @__PURE__ */ import_react5.default.createElement("div", { key: shop.id, className: "shop-card" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-name", dangerouslySetInnerHTML: { __html: escapeHtml(shop.name) } }), /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-location" }, "\u{1F4CD} ", escapeHtml(shop.city), ", ", escapeHtml(shop.country)), shop.address && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F3E0}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.address) } })), shop.phone && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F4DE}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.phone) } })), shop.hours && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F550}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.hours) } })), shop.rating && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-rating" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "star" }, "\u2B50"), shop.rating, " (", shop.reviews_count, " reviews)"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-actions" }, /* @__PURE__ */ import_react5.default.createElement(
+      "a",
+      {
+        href: getGoogleMapsUrl(shop),
+        target: "_blank",
+        rel: "noopener noreferrer",
+        className: "google-maps-button"
+      },
+      "\u{1F4CD} Google Map"
+    ), shop.website && /* @__PURE__ */ import_react5.default.createElement(
       "a",
       {
         href: escapeHtml(shop.website),
@@ -36360,7 +36384,7 @@ ${suffix}`;
         className: "shop-website"
       },
       "Visit Website \u2192"
-    )))), hasMore && !loading && /* @__PURE__ */ import_react5.default.createElement("div", { className: "load-more" }, /* @__PURE__ */ import_react5.default.createElement("button", { onClick: handleLoadMore, disabled: loading }, loading ? "Loading..." : "Load More"))));
+    ))))), hasMore && !loading && /* @__PURE__ */ import_react5.default.createElement("div", { className: "load-more" }, /* @__PURE__ */ import_react5.default.createElement("button", { onClick: handleLoadMore, disabled: loading }, loading ? "Loading..." : "Load More"))));
   };
 
   // src/components/App.tsx
