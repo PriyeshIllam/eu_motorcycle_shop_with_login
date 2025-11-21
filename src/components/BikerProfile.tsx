@@ -5,9 +5,10 @@ import { BikerMotorcycle, MotorcycleFormData, MOTORCYCLE_BRANDS } from '../types
 interface BikerProfileProps {
     onBack?: () => void;
     onLogout?: () => void;
+    onViewServiceDocuments?: (motorcycle: BikerMotorcycle) => void;
 }
 
-export const BikerProfile: React.FC<BikerProfileProps> = ({ onBack, onLogout }) => {
+export const BikerProfile: React.FC<BikerProfileProps> = ({ onBack, onLogout, onViewServiceDocuments }) => {
     const [motorcycles, setMotorcycles] = useState<BikerMotorcycle[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -582,6 +583,14 @@ export const BikerProfile: React.FC<BikerProfileProps> = ({ onBack, onLogout }) 
                                     </div>
 
                                     <div className="motorcycle-actions">
+                                        {onViewServiceDocuments && (
+                                            <button
+                                                className="service-docs-button"
+                                                onClick={() => onViewServiceDocuments(motorcycle)}
+                                            >
+                                                📋 Service History
+                                            </button>
+                                        )}
                                         <button
                                             className="edit-button"
                                             onClick={() => handleEdit(motorcycle)}

@@ -402,6 +402,15 @@
 .motorcycle-card .motorcycle-actions button.delete-button:hover {
   background: #feb2b2;
 }
+.motorcycle-card .motorcycle-actions button.service-docs-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  flex: 1.5;
+}
+.motorcycle-card .motorcycle-actions button.service-docs-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
 
 @media (max-width: 768px) {
   .biker-profile-container {
