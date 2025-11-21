@@ -1,37 +1,41 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { FormInput } from './FormInput';
 import { LoginButton } from './LoginButton';
 import { supabase } from '../lib/supabase';
 
-interface LoginFormProps {
-    onSwitchToRegister?: () => void;
+interface RegisterFormProps {
+    onSwitchToLogin?: () => void;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
+export const RegisterForm: React.FC<RegisterFormProps> = ({ onSwitchToLogin }) => {
+    const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [rememberMe, setRememberMe] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const [fullNameError, setFullNameError] = useState(false);
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
-
-    useEffect(() => {
-        // Load saved email on mount
-        const savedEmail = localStorage.getItem('rememberedEmail');
-        if (savedEmail) {
-            setEmail(savedEmail);
-            setRememberMe(true);
-        }
-    }, []);
+    const [confirmPasswordError, setConfirmPasswordError] = useState(false);
 
     const validateEmail = (email: string): boolean => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
 
-    const validateCredentials = (email: string, password: string): string | null => {
+    const validateForm = (): string | null => {
+        if (!fullName.trim()) {
+            setFullNameError(true);
+            return 'Please enter your full name';
+        }
+
+        if (fullName.trim().length < 2) {
+            setFullNameError(true);
+            return 'Full name must be at least 2 characters';
+        }
+
         if (!email) {
             setEmailError(true);
             return 'Please enter your email';
@@ -44,12 +48,22 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
 
         if (!password) {
             setPasswordError(true);
-            return 'Please enter your password';
+            return 'Please enter a password';
         }
 
         if (password.length < 6) {
             setPasswordError(true);
             return 'Password must be at least 6 characters';
+        }
+
+        if (!confirmPassword) {
+            setConfirmPasswordError(true);
+            return 'Please confirm your password';
+        }
+
+        if (password !== confirmPassword) {
+            setConfirmPasswordError(true);
+            return 'Passwords do not match';
         }
 
         return null;
@@ -59,10 +73,12 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
         e.preventDefault();
         setErrorMessage('');
         setSuccessMessage('');
+        setFullNameError(false);
         setEmailError(false);
         setPasswordError(false);
+        setConfirmPasswordError(false);
 
-        const validationError = validateCredentials(email.trim(), password);
+        const validationError = validateForm();
         if (validationError) {
             setErrorMessage(validationError);
             return;
@@ -71,34 +87,45 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
         setLoading(true);
 
         try {
-            // Sign in with Supabase
-            const { data, error } = await supabase.auth.signInWithPassword({
+            // Sign up with Supabase
+            const { data, error } = await supabase.auth.signUp({
                 email: email.trim(),
                 password: password,
+                options: {
+                    data: {
+                        full_name: fullName.trim(),
+                    }
+                }
             });
 
             if (error) {
-                setErrorMessage(error.message || 'Invalid email or password');
+                setErrorMessage(error.message || 'Registration failed. Please try again.');
             } else if (data.user) {
-                // Handle remember me
-                if (rememberMe) {
-                    localStorage.setItem('rememberedEmail', email.trim());
-                } else {
-                    localStorage.removeItem('rememberedEmail');
-                }
+                setSuccessMessage('Registration successful! Please check your email to confirm your account.');
 
-                setSuccessMessage('Login successful! Redirecting...');
+                // Clear form
+                setFullName('');
+                setEmail('');
+                setPassword('');
+                setConfirmPassword('');
 
+                // Switch to login after delay
                 setTimeout(() => {
-                    window.location.href = '/dashboard.html';
-                }, 1500);
+                    onSwitchToLogin?.();
+                }, 3000);
             }
         } catch (error) {
             setErrorMessage('An error occurred. Please try again later.');
-            console.error('Login error:', error);
+            console.error('Registration error:', error);
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleFullNameChange = (value: string) => {
+        setFullName(value);
+        setFullNameError(false);
+        setErrorMessage('');
     };
 
     const handleEmailChange = (value: string) => {
@@ -113,14 +140,31 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
         setErrorMessage('');
     };
 
+    const handleConfirmPasswordChange = (value: string) => {
+        setConfirmPassword(value);
+        setConfirmPasswordError(false);
+        setErrorMessage('');
+    };
+
     return (
         <div className="login-container">
             <div className="login-box">
                 <div className="logo">
                     <h1>🏍️ EU Motorcycle Shop</h1>
                 </div>
-                <h2>Login</h2>
-                <form id="loginForm" className="login-form" onSubmit={handleSubmit}>
+                <h2>Create Account</h2>
+                <form id="registerForm" className="login-form" onSubmit={handleSubmit}>
+                    <FormInput
+                        id="fullName"
+                        label="Full Name"
+                        type="text"
+                        value={fullName}
+                        onChange={handleFullNameChange}
+                        placeholder="Enter your full name"
+                        required
+                        error={fullNameError}
+                        autoComplete="name"
+                    />
                     <FormInput
                         id="email"
                         label="Email"
@@ -141,22 +185,20 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
                         placeholder="Enter your password"
                         required
                         error={passwordError}
-                        autoComplete="current-password"
+                        autoComplete="new-password"
                     />
-                    <div className="form-options">
-                        <label className="remember-me">
-                            <input
-                                type="checkbox"
-                                id="rememberMe"
-                                name="rememberMe"
-                                checked={rememberMe}
-                                onChange={(e) => setRememberMe(e.target.checked)}
-                            />
-                            <span>Remember me</span>
-                        </label>
-                        <a href="#" className="forgot-password">Forgot password?</a>
-                    </div>
-                    <LoginButton loading={loading} />
+                    <FormInput
+                        id="confirmPassword"
+                        label="Confirm Password"
+                        type="password"
+                        value={confirmPassword}
+                        onChange={handleConfirmPasswordChange}
+                        placeholder="Confirm your password"
+                        required
+                        error={confirmPasswordError}
+                        autoComplete="new-password"
+                    />
+                    <LoginButton loading={loading} text="Register" loadingText="Creating account..." />
                     {errorMessage && (
                         <div className="error-message" style={{ display: 'block' }}>
                             {errorMessage}
@@ -169,7 +211,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
                     )}
                 </form>
                 <div className="signup-link">
-                    <p>Don't have an account? <a href="#" onClick={(e) => { e.preventDefault(); onSwitchToRegister?.(); }}>Sign up</a></p>
+                    <p>Already have an account? <a href="#" onClick={(e) => { e.preventDefault(); onSwitchToLogin?.(); }}>Sign in</a></p>
                 </div>
             </div>
         </div>
