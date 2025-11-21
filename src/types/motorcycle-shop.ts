@@ -9,6 +9,9 @@ export interface MotorcycleShop {
     hours: string | null;
     rating: number | null;
     reviews_count: number | null;
+    latitude: number | null;
+    longitude: number | null;
+    place_id: string | null;
 }
 
 export interface ShopFilters {
