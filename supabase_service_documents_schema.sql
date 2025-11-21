@@ -194,53 +194,40 @@ GRANT EXECUTE ON FUNCTION public.get_service_reminders(UUID, INTEGER) TO authent
 -- ========================================
 -- STORAGE BUCKET SETUP
 -- ========================================
--- Note: Storage bucket needs to be created via Supabase Dashboard or SQL
--- Run these commands after creating the bucket:
+-- Note: Storage bucket and policies need to be created via Supabase Dashboard
 
--- Create storage bucket for service documents (run in Supabase Dashboard Storage section)
+-- Step 1: Create Storage Bucket
+-- Go to Supabase Dashboard → Storage → Create a new bucket
 -- Bucket name: 'service-documents'
--- Public: false (private bucket)
+-- Public: OFF (private bucket)
 
--- Storage policies for the 'service-documents' bucket
--- These need to be created in the Supabase Dashboard under Storage > Policies
--- Or run these SQL commands:
+-- Step 2: Create Storage Policies
+-- Go to Storage → service-documents bucket → Policies
+-- Create the following policies:
 
--- Policy: Users can upload their own documents
-INSERT INTO storage.policies (name, bucket_id, definition, check)
-VALUES (
-    'Users can upload service documents',
-    'service-documents',
-    '(bucket_id = ''service-documents''::text) AND (auth.uid() = (storage.foldername(name))[1]::uuid)',
-    '(bucket_id = ''service-documents''::text) AND (auth.uid() = (storage.foldername(name))[1]::uuid)'
-)
-ON CONFLICT DO NOTHING;
+-- Policy 1: Users can upload their own documents (INSERT)
+-- Name: Users can upload service documents
+-- Allowed operation: INSERT
+-- Policy definition:
+-- (bucket_id = 'service-documents') AND (auth.uid()::text = (storage.foldername(name))[1])
 
--- Policy: Users can view their own documents
-INSERT INTO storage.policies (name, bucket_id, definition)
-VALUES (
-    'Users can view their own service documents',
-    'service-documents',
-    '(bucket_id = ''service-documents''::text) AND (auth.uid() = (storage.foldername(name))[1]::uuid)'
-)
-ON CONFLICT DO NOTHING;
+-- Policy 2: Users can view their own documents (SELECT)
+-- Name: Users can view their own service documents
+-- Allowed operation: SELECT
+-- Policy definition:
+-- (bucket_id = 'service-documents') AND (auth.uid()::text = (storage.foldername(name))[1])
 
--- Policy: Users can update their own documents
-INSERT INTO storage.policies (name, bucket_id, definition)
-VALUES (
-    'Users can update their own service documents',
-    'service-documents',
-    '(bucket_id = ''service-documents''::text) AND (auth.uid() = (storage.foldername(name))[1]::uuid)'
-)
-ON CONFLICT DO NOTHING;
+-- Policy 3: Users can update their own documents (UPDATE)
+-- Name: Users can update their own service documents
+-- Allowed operation: UPDATE
+-- Policy definition:
+-- (bucket_id = 'service-documents') AND (auth.uid()::text = (storage.foldername(name))[1])
 
--- Policy: Users can delete their own documents
-INSERT INTO storage.policies (name, bucket_id, definition)
-VALUES (
-    'Users can delete their own service documents',
-    'service-documents',
-    '(bucket_id = ''service-documents''::text) AND (auth.uid() = (storage.foldername(name))[1]::uuid)'
-)
-ON CONFLICT DO NOTHING;
+-- Policy 4: Users can delete their own documents (DELETE)
+-- Name: Users can delete their own service documents
+-- Allowed operation: DELETE
+-- Policy definition:
+-- (bucket_id = 'service-documents') AND (auth.uid()::text = (storage.foldername(name))[1])
 
 -- ========================================
 -- USAGE NOTES
