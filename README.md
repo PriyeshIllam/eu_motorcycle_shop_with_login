@@ -1,13 +1,14 @@
 # EU Motorcycle Shop - Login Application
 
-A TypeScript-based login application with SASS styling for the EU Motorcycle Shop.
+A React + TypeScript (TSX) login application with SASS styling and component-based architecture for the EU Motorcycle Shop.
 
 ## Features
 
-- Modern, responsive login page
-- TypeScript for type-safe code
+- Modern, responsive login page built with React
+- TypeScript + TSX for type-safe component development
+- Component-based architecture for reusability
 - SASS for organized and maintainable styles
-- Form validation
+- Form validation with real-time feedback
 - Remember me functionality
 - Loading states and error handling
 - Beautiful animations and transitions
@@ -17,13 +18,18 @@ A TypeScript-based login application with SASS styling for the EU Motorcycle Sho
 ```
 eu_motorcycle_shop_with_login/
 ├── src/
-│   ├── login.ts           # TypeScript login logic
+│   ├── components/         # React components
+│   │   ├── App.tsx        # Main app component
+│   │   ├── LoginForm.tsx  # Login form container
+│   │   ├── FormInput.tsx  # Reusable input component
+│   │   └── LoginButton.tsx # Submit button component
+│   ├── index.tsx          # Application entry point
 │   └── styles/
 │       └── login.scss     # SASS styles
 ├── public/
-│   ├── index.html         # Login page
+│   ├── index.html         # HTML template with React root
 │   ├── css/               # Compiled CSS (generated)
-│   └── js/                # Compiled JavaScript (generated)
+│   └── js/                # Bundled JavaScript (generated)
 ├── package.json
 └── tsconfig.json
 ```
@@ -42,10 +48,10 @@ Build both TypeScript and SASS:
 npm run build
 ```
 
-Build TypeScript only:
+Build JavaScript only:
 
 ```bash
-npm run build:ts
+npm run build:js
 ```
 
 Build SASS only:
@@ -80,7 +86,15 @@ For testing purposes, use:
 
 ## Technologies Used
 
-- TypeScript 5.3
+- React 18.2
+- TypeScript 5.3 (with TSX)
 - SASS 1.69
+- esbuild (for bundling)
 - HTML5
-- ES6 Modules
+
+## Component Structure
+
+- **App.tsx**: Main application component
+- **LoginForm.tsx**: Container component managing login state and logic
+- **FormInput.tsx**: Reusable input field component with validation
+- **LoginButton.tsx**: Submit button with loading states

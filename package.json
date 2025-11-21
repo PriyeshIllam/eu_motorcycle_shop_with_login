@@ -1,25 +1,33 @@
 {
   "name": "eu-motorcycle-shop-login",
   "version": "1.0.0",
-  "description": "Motorcycle shop login application",
+  "description": "Motorcycle shop login application with React",
   "main": "index.js",
   "scripts": {
     "build:css": "sass src/styles/login.scss public/css/login.css",
-    "build:ts": "tsc",
-    "build": "npm run build:css && npm run build:ts",
+    "build:js": "esbuild src/index.tsx --bundle --outfile=public/js/bundle.js --sourcemap",
+    "build": "npm run build:css && npm run build:js",
     "watch:css": "sass --watch src/styles/login.scss:public/css/login.css",
-    "watch:ts": "tsc --watch",
-    "dev": "npm run build && npm run watch:css & npm run watch:ts",
+    "watch:js": "esbuild src/index.tsx --bundle --outfile=public/js/bundle.js --sourcemap --watch",
+    "dev": "npm run build && npm run watch:css & npm run watch:js",
     "start": "npm run build && npx http-server public -p 8080"
   },
   "keywords": [
     "login",
     "typescript",
-    "sass"
+    "sass",
+    "react"
   ],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "esbuild": "^0.19.0",
     "typescript": "^5.3.0",
     "sass": "^1.69.0",
     "http-server": "^14.1.1"
