@@ -36,6 +36,9 @@ eu_motorcycle_shop_with_login/
 │   ├── index.html            # HTML template with React root
 │   ├── css/                  # Compiled CSS (generated)
 │   └── js/                   # Bundled JavaScript (generated)
+├── .env                      # Environment variables (gitignored)
+├── .env.example              # Environment variables template
+├── build.js                  # Custom build script with env injection
 ├── package.json
 ├── tsconfig.json
 └── SUPABASE_SETUP.md         # Supabase configuration guide
@@ -49,13 +52,26 @@ npm install
 
 ## Supabase Configuration
 
-**IMPORTANT**: Before running the application, you need to configure your Supabase API key.
+**IMPORTANT**: Before running the application, you need to configure your Supabase credentials using environment variables.
 
-1. See [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) for detailed instructions
+### Quick Setup
+
+1. Copy the example environment file:
+   ```bash
+   cp .env.example .env
+   ```
+
 2. Get your Supabase anon key from your project dashboard
-3. Update `src/lib/supabase.ts` with your actual API key
 
-The application is configured to use: `https://mpizntvbwkktnzmnjtep.supabase.co`
+3. Update the `.env` file with your actual Supabase anon key:
+   ```env
+   SUPABASE_URL=https://mpizntvbwkktnzmnjtep.supabase.co
+   SUPABASE_ANON_KEY=your_actual_anon_key_here
+   ```
+
+4. See [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) for detailed instructions
+
+**Security:** The `.env` file is gitignored and will not be committed to version control.
 
 ## Build
 

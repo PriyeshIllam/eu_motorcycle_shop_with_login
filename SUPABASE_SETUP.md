@@ -14,21 +14,36 @@
 
 ## Configuring the Application
 
-1. Open the file: `src/lib/supabase.ts`
+The application uses environment variables to securely store your Supabase credentials.
 
-2. Replace `YOUR_SUPABASE_ANON_KEY` with your actual anon key:
+1. **Copy the example environment file:**
 
-```typescript
-const SUPABASE_ANON_KEY = 'your-actual-anon-key-here';
+```bash
+cp .env.example .env
 ```
 
-3. Save the file
+2. **Open the `.env` file** in your text editor
 
-4. Rebuild the application:
+3. **Replace `YOUR_SUPABASE_ANON_KEY`** with your actual anon key from step 5 above:
+
+```env
+SUPABASE_URL=https://mpizntvbwkktnzmnjtep.supabase.co
+SUPABASE_ANON_KEY=your-actual-anon-key-here
+```
+
+4. **Save the file**
+
+5. **Rebuild the application:**
 
 ```bash
 npm run build
 ```
+
+**Important Security Notes:**
+- The `.env` file is excluded from git (via `.gitignore`)
+- Never commit your `.env` file to version control
+- Never share your Supabase keys publicly
+- Use `.env.example` as a template for others
 
 ## Supabase Authentication Setup
 
@@ -83,7 +98,9 @@ After configuration, test the authentication:
 
 ## Troubleshooting
 
-- **Error: Invalid API key**: Make sure you copied the anon key correctly
+- **Error: Invalid API key**: Make sure you copied the anon key correctly in your `.env` file
+- **Error: Missing Supabase environment variables**: Make sure your `.env` file exists and contains both `SUPABASE_URL` and `SUPABASE_ANON_KEY`
 - **Error: Email not sent**: Check your Supabase email settings
 - **Error: User already exists**: Try using a different email address
 - **Error: Invalid credentials**: Make sure you confirmed your email first
+- **Build fails**: Run `npm run build` after updating your `.env` file

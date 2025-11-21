@@ -1,11 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Supabase configuration
-const SUPABASE_URL = 'https://mpizntvbwkktnzmnjtep.supabase.co';
+// Supabase configuration from environment variables
+// These are injected at build time by esbuild
+const SUPABASE_URL = process.env.SUPABASE_URL || '';
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || '';
 
-// IMPORTANT: Replace this with your actual Supabase anon key
-// You can find this in your Supabase project settings under API
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+// Validate environment variables
+if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    console.error('Missing Supabase environment variables. Please check your .env file.');
+}
 
 // Create Supabase client
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);

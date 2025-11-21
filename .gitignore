@@ -4,3 +4,8 @@ node_modules/
 .vscode/
 .idea/
 *.map
+
+# Environment variables
+.env
+.env.local
+.env.*.local

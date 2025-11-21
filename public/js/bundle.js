@@ -35841,6 +35841,9 @@ ${suffix}`;
   // src/lib/supabase.ts
   var SUPABASE_URL = "https://mpizntvbwkktnzmnjtep.supabase.co";
   var SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    console.error("Missing Supabase environment variables. Please check your .env file.");
+  }
   var supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   // src/components/LoginForm.tsx
