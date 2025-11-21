@@ -4,12 +4,15 @@ import { LoginForm } from './LoginForm';
 import { RegisterForm } from './RegisterForm';
 import { HomePage } from './HomePage';
 import { BikerProfile } from './BikerProfile';
+import { ServiceDocuments } from './ServiceDocuments';
+import { BikerMotorcycle } from '../types/biker-motorcycle';
 
-type ViewMode = 'login' | 'register' | 'home' | 'profile';
+type ViewMode = 'login' | 'register' | 'home' | 'profile' | 'serviceDocs';
 
 export const App: React.FC = () => {
     const [view, setView] = useState<ViewMode>('login');
     const [loading, setLoading] = useState(true);
+    const [selectedMotorcycle, setSelectedMotorcycle] = useState<BikerMotorcycle | null>(null);
 
     useEffect(() => {
         // Check for existing session on mount
@@ -55,6 +58,16 @@ export const App: React.FC = () => {
         setView('home');
     };
 
+    const handleViewServiceDocuments = (motorcycle: BikerMotorcycle) => {
+        setSelectedMotorcycle(motorcycle);
+        setView('serviceDocs');
+    };
+
+    const handleBackToProfile = () => {
+        setSelectedMotorcycle(null);
+        setView('profile');
+    };
+
     if (loading) {
         return (
             <div style={{
@@ -71,10 +84,16 @@ export const App: React.FC = () => {
 
     return (
         <>
-            {view === 'profile' ? (
+            {view === 'serviceDocs' && selectedMotorcycle ? (
+                <ServiceDocuments
+                    motorcycle={selectedMotorcycle}
+                    onBack={handleBackToProfile}
+                />
+            ) : view === 'profile' ? (
                 <BikerProfile
                     onBack={() => setView('home')}
                     onLogout={handleLogout}
+                    onViewServiceDocuments={handleViewServiceDocuments}
                 />
             ) : view === 'home' ? (
                 <HomePage
