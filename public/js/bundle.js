@@ -1093,7 +1093,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState4(initialState) {
+          function useState5(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1105,7 +1105,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect2(create, deps) {
+          function useEffect4(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1117,7 +1117,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useLayoutEffect(create, deps);
           }
-          function useCallback(callback, deps) {
+          function useCallback2(callback, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useCallback(callback, deps);
           }
@@ -1884,11 +1884,11 @@
           exports.memo = memo;
           exports.startTransition = startTransition;
           exports.unstable_act = act;
-          exports.useCallback = useCallback;
+          exports.useCallback = useCallback2;
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect2;
+          exports.useEffect = useEffect4;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -1896,7 +1896,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState4;
+          exports.useState = useState5;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2392,9 +2392,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React7 = require_react();
+          var React8 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React7.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React8.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3999,7 +3999,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React7.Children.forEach(props.children, function(child) {
+                  React8.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -25449,62 +25449,11 @@ ${cause.stack}`;
   });
 
   // src/index.tsx
-  var import_react6 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/components/App.tsx
-  var import_react5 = __toESM(require_react());
-
-  // src/components/LoginForm.tsx
-  var import_react3 = __toESM(require_react());
-
-  // src/components/FormInput.tsx
-  var import_react = __toESM(require_react());
-  var FormInput = ({
-    id,
-    label,
-    type,
-    value,
-    onChange,
-    placeholder,
-    required = false,
-    error = false,
-    autoComplete
-  }) => {
-    return /* @__PURE__ */ import_react.default.createElement("div", { className: "form-group" }, /* @__PURE__ */ import_react.default.createElement("label", { htmlFor: id }, label), /* @__PURE__ */ import_react.default.createElement(
-      "input",
-      {
-        type,
-        id,
-        name: id,
-        value,
-        onChange: (e) => onChange(e.target.value),
-        placeholder,
-        required,
-        autoComplete,
-        className: error ? "error" : ""
-      }
-    ));
-  };
-
-  // src/components/LoginButton.tsx
-  var import_react2 = __toESM(require_react());
-  var LoginButton = ({
-    loading,
-    disabled = false,
-    text = "Login",
-    loadingText = "Loading..."
-  }) => {
-    return /* @__PURE__ */ import_react2.default.createElement(
-      "button",
-      {
-        type: "submit",
-        className: `login-button ${loading ? "loading" : ""}`,
-        disabled: disabled || loading
-      },
-      loading ? loadingText : text
-    );
-  };
+  var import_react6 = __toESM(require_react());
 
   // node_modules/@supabase/functions-js/dist/module/FunctionsClient.js
   init_tslib_es6();
@@ -35839,8 +35788,8 @@ ${suffix}`;
   }
 
   // src/lib/supabase.ts
-  var SUPABASE_URL = "https://mpizntvbwkktnzmnjtep.supabase.co";
-  var SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+  var SUPABASE_URL = process.env.SUPABASE_URL || "";
+  var SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || "";
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY || SUPABASE_ANON_KEY === "YOUR_SUPABASE_ANON_KEY") {
     console.error("\u274C Missing or invalid Supabase environment variables.");
     console.error("\u{1F4DD} Please update your .env file with your actual Supabase credentials.");
@@ -35849,7 +35798,58 @@ ${suffix}`;
   var supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   // src/components/LoginForm.tsx
-  var LoginForm = ({ onSwitchToRegister }) => {
+  var import_react3 = __toESM(require_react());
+
+  // src/components/FormInput.tsx
+  var import_react = __toESM(require_react());
+  var FormInput = ({
+    id,
+    label,
+    type,
+    value,
+    onChange,
+    placeholder,
+    required = false,
+    error = false,
+    autoComplete
+  }) => {
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "form-group" }, /* @__PURE__ */ import_react.default.createElement("label", { htmlFor: id }, label), /* @__PURE__ */ import_react.default.createElement(
+      "input",
+      {
+        type,
+        id,
+        name: id,
+        value,
+        onChange: (e) => onChange(e.target.value),
+        placeholder,
+        required,
+        autoComplete,
+        className: error ? "error" : ""
+      }
+    ));
+  };
+
+  // src/components/LoginButton.tsx
+  var import_react2 = __toESM(require_react());
+  var LoginButton = ({
+    loading,
+    disabled = false,
+    text = "Login",
+    loadingText = "Loading..."
+  }) => {
+    return /* @__PURE__ */ import_react2.default.createElement(
+      "button",
+      {
+        type: "submit",
+        className: `login-button ${loading ? "loading" : ""}`,
+        disabled: disabled || loading
+      },
+      loading ? loadingText : text
+    );
+  };
+
+  // src/components/LoginForm.tsx
+  var LoginForm = ({ onSwitchToRegister, onLoginSuccess }) => {
     const [email, setEmail] = (0, import_react3.useState)("");
     const [password, setPassword] = (0, import_react3.useState)("");
     const [rememberMe, setRememberMe] = (0, import_react3.useState)(false);
@@ -35913,10 +35913,16 @@ ${suffix}`;
           } else {
             localStorage.removeItem("rememberedEmail");
           }
-          setSuccessMessage("Login successful! Redirecting...");
-          setTimeout(() => {
-            window.location.href = "/dashboard.html";
-          }, 1500);
+          setSuccessMessage("Login successful!");
+          if (onLoginSuccess) {
+            setTimeout(() => {
+              onLoginSuccess();
+            }, 500);
+          } else {
+            setTimeout(() => {
+              window.location.href = "/dashboard.html";
+            }, 1500);
+          }
         }
       } catch (error) {
         setErrorMessage("An error occurred. Please try again later.");
@@ -36150,10 +36156,269 @@ ${suffix}`;
     } }, "Sign in")))));
   };
 
+  // src/components/HomePage.tsx
+  var import_react5 = __toESM(require_react());
+  var PAGE_SIZE = 50;
+  var HomePage = ({ onLogout }) => {
+    const [shops, setShops] = (0, import_react5.useState)([]);
+    const [displayedShops, setDisplayedShops] = (0, import_react5.useState)([]);
+    const [stats, setStats] = (0, import_react5.useState)({
+      totalShops: 0,
+      totalCountries: 0,
+      visibleShops: 0
+    });
+    const [countries, setCountries] = (0, import_react5.useState)([]);
+    const [cities, setCities] = (0, import_react5.useState)([]);
+    const [filters, setFilters] = (0, import_react5.useState)({
+      search: "",
+      country: "",
+      city: "",
+      rating: ""
+    });
+    const [currentPage, setCurrentPage] = (0, import_react5.useState)(0);
+    const [loading, setLoading] = (0, import_react5.useState)(true);
+    const [error, setError] = (0, import_react5.useState)(null);
+    const [hasMore, setHasMore] = (0, import_react5.useState)(false);
+    const loadStats = (0, import_react5.useCallback)(async () => {
+      try {
+        const { count, error: countError } = await supabase.from("motorcycle_shops").select("*", { count: "exact", head: true });
+        if (countError)
+          throw countError;
+        const chunkSize = 1e3;
+        let offset = 0;
+        let allCountries = [];
+        while (true) {
+          const { data, error: countriesError } = await supabase.from("motorcycle_shops").select("country").order("country").range(offset, offset + chunkSize - 1);
+          if (countriesError)
+            throw countriesError;
+          if (!data || data.length === 0)
+            break;
+          allCountries = allCountries.concat(data.map((c) => c.country));
+          offset += chunkSize;
+        }
+        const uniqueCountries = [...new Set(allCountries)];
+        setStats({
+          totalShops: count || 0,
+          totalCountries: uniqueCountries.length,
+          visibleShops: 0
+        });
+      } catch (err) {
+        console.error("Error loading stats:", err);
+        setError(err instanceof Error ? err.message : "Failed to load statistics");
+      }
+    }, []);
+    const loadCountries = (0, import_react5.useCallback)(async () => {
+      try {
+        const { data, error: countriesError } = await supabase.rpc("get_distinct_countries");
+        if (countriesError)
+          throw countriesError;
+        const uniqueCountries = [...new Set(data.map((s) => s.country))];
+        setCountries(uniqueCountries);
+      } catch (err) {
+        console.error("Error loading countries:", err);
+        try {
+          const { data, error: fallbackError } = await supabase.from("motorcycle_shops").select("country").order("country").limit(1e3);
+          if (fallbackError)
+            throw fallbackError;
+          const uniqueCountries = [...new Set(data.map((s) => s.country))];
+          setCountries(uniqueCountries);
+        } catch (fallbackErr) {
+          console.error("Fallback error loading countries:", fallbackErr);
+        }
+      }
+    }, []);
+    const loadCities = (0, import_react5.useCallback)(async (country) => {
+      if (!country) {
+        setCities([]);
+        return;
+      }
+      try {
+        const { data, error: citiesError } = await supabase.from("motorcycle_shops").select("city").eq("country", country).order("city");
+        if (citiesError)
+          throw citiesError;
+        const uniqueCities = [...new Set(data.map((s) => s.city))];
+        setCities(uniqueCities);
+      } catch (err) {
+        console.error("Error loading cities:", err);
+      }
+    }, []);
+    const loadShops = (0, import_react5.useCallback)(async (append = false) => {
+      try {
+        setLoading(true);
+        const page = append ? currentPage + 1 : 0;
+        let query = supabase.from("motorcycle_shops").select("*").range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1);
+        if (filters.search) {
+          query = query.or(`name.ilike.%${filters.search}%,city.ilike.%${filters.search}%,address.ilike.%${filters.search}%`);
+        }
+        if (filters.country) {
+          query = query.eq("country", filters.country);
+        }
+        if (filters.city) {
+          query = query.eq("city", filters.city);
+        }
+        if (filters.rating) {
+          query = query.gte("rating", parseFloat(filters.rating));
+        }
+        query = query.order("country").order("city").order("name");
+        const { data, error: shopsError } = await query;
+        if (shopsError)
+          throw shopsError;
+        const newShops = data;
+        if (append) {
+          setDisplayedShops((prev) => [...prev, ...newShops]);
+          setCurrentPage(page);
+        } else {
+          setDisplayedShops(newShops);
+          setCurrentPage(0);
+        }
+        setHasMore(newShops.length === PAGE_SIZE);
+        setStats((prev) => ({
+          ...prev,
+          visibleShops: append ? prev.visibleShops + newShops.length : newShops.length
+        }));
+        setError(null);
+      } catch (err) {
+        console.error("Error loading shops:", err);
+        setError(err instanceof Error ? err.message : "Failed to load shops");
+      } finally {
+        setLoading(false);
+      }
+    }, [currentPage, filters]);
+    (0, import_react5.useEffect)(() => {
+      const init = async () => {
+        await loadStats();
+        await loadCountries();
+        await loadShops();
+      };
+      init();
+    }, []);
+    (0, import_react5.useEffect)(() => {
+      loadShops();
+    }, [filters.search, filters.country, filters.city, filters.rating]);
+    (0, import_react5.useEffect)(() => {
+      loadCities(filters.country);
+    }, [filters.country, loadCities]);
+    const handleLoadMore = () => {
+      loadShops(true);
+    };
+    const handleFilterChange = (key, value) => {
+      setFilters((prev) => {
+        const newFilters = { ...prev, [key]: value };
+        if (key === "country") {
+          newFilters.city = "";
+        }
+        return newFilters;
+      });
+    };
+    const escapeHtml = (text) => {
+      if (!text)
+        return "";
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    };
+    return /* @__PURE__ */ import_react5.default.createElement("div", { className: "homepage-container" }, /* @__PURE__ */ import_react5.default.createElement("header", { className: "homepage-header" }, /* @__PURE__ */ import_react5.default.createElement("h1", null, "\u{1F3CD}\uFE0F EU Motorcycle Repair Directory"), /* @__PURE__ */ import_react5.default.createElement("p", null, "Find motorcycle repair shops across Europe"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "powered-by" }, "\u26A1 Powered by Supabase"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "stats" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "stat-item" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "stat-number" }, stats.totalShops.toLocaleString()), /* @__PURE__ */ import_react5.default.createElement("span", { className: "stat-label" }, "Repair Shops")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "stat-item" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "stat-number" }, stats.totalCountries), /* @__PURE__ */ import_react5.default.createElement("span", { className: "stat-label" }, "Countries")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "stat-item" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "stat-number" }, stats.visibleShops.toLocaleString()), /* @__PURE__ */ import_react5.default.createElement("span", { className: "stat-label" }, "Showing")))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "controls" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "search-box" }, /* @__PURE__ */ import_react5.default.createElement(
+      "input",
+      {
+        type: "text",
+        placeholder: "\u{1F50D} Search by name, city, or address...",
+        value: filters.search,
+        onChange: (e) => handleFilterChange("search", e.target.value)
+      }
+    )), /* @__PURE__ */ import_react5.default.createElement(
+      "select",
+      {
+        value: filters.country,
+        onChange: (e) => handleFilterChange("country", e.target.value)
+      },
+      /* @__PURE__ */ import_react5.default.createElement("option", { value: "" }, "All Countries"),
+      countries.map((country) => /* @__PURE__ */ import_react5.default.createElement("option", { key: country, value: country }, country))
+    ), /* @__PURE__ */ import_react5.default.createElement(
+      "select",
+      {
+        value: filters.city,
+        onChange: (e) => handleFilterChange("city", e.target.value)
+      },
+      /* @__PURE__ */ import_react5.default.createElement("option", { value: "" }, "All Cities"),
+      cities.map((city) => /* @__PURE__ */ import_react5.default.createElement("option", { key: city, value: city }, city))
+    ), /* @__PURE__ */ import_react5.default.createElement(
+      "select",
+      {
+        value: filters.rating,
+        onChange: (e) => handleFilterChange("rating", e.target.value)
+      },
+      /* @__PURE__ */ import_react5.default.createElement("option", { value: "" }, "All Ratings"),
+      /* @__PURE__ */ import_react5.default.createElement("option", { value: "4.5" }, "4.5+ Stars"),
+      /* @__PURE__ */ import_react5.default.createElement("option", { value: "4.0" }, "4.0+ Stars"),
+      /* @__PURE__ */ import_react5.default.createElement("option", { value: "3.5" }, "3.5+ Stars")
+    ), onLogout && /* @__PURE__ */ import_react5.default.createElement("button", { className: "logout-button", onClick: onLogout }, "Logout")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "content" }, error && /* @__PURE__ */ import_react5.default.createElement("div", { className: "error-message" }, /* @__PURE__ */ import_react5.default.createElement("strong", null, "Error:"), " ", error), loading && currentPage === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "loading" }, "Loading motorcycle shops...") : displayedShops.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "no-results" }, "No shops found matching your criteria.") : /* @__PURE__ */ import_react5.default.createElement("div", { className: "shops-grid" }, displayedShops.map((shop) => /* @__PURE__ */ import_react5.default.createElement("div", { key: shop.id, className: "shop-card" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-name", dangerouslySetInnerHTML: { __html: escapeHtml(shop.name) } }), /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-location" }, "\u{1F4CD} ", escapeHtml(shop.city), ", ", escapeHtml(shop.country)), shop.address && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F3E0}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.address) } })), shop.phone && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F4DE}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.phone) } })), shop.hours && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F550}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.hours) } })), shop.rating && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-rating" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "star" }, "\u2B50"), shop.rating, " (", shop.reviews_count, " reviews)"), shop.website && /* @__PURE__ */ import_react5.default.createElement(
+      "a",
+      {
+        href: escapeHtml(shop.website),
+        target: "_blank",
+        rel: "noopener noreferrer",
+        className: "shop-website"
+      },
+      "Visit Website \u2192"
+    )))), hasMore && !loading && /* @__PURE__ */ import_react5.default.createElement("div", { className: "load-more" }, /* @__PURE__ */ import_react5.default.createElement("button", { onClick: handleLoadMore, disabled: loading }, loading ? "Loading..." : "Load More"))));
+  };
+
   // src/components/App.tsx
   var App = () => {
-    const [view, setView] = (0, import_react5.useState)("login");
-    return /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, view === "login" ? /* @__PURE__ */ import_react5.default.createElement(LoginForm, { onSwitchToRegister: () => setView("register") }) : /* @__PURE__ */ import_react5.default.createElement(RegisterForm, { onSwitchToLogin: () => setView("login") }));
+    const [view, setView] = (0, import_react6.useState)("login");
+    const [loading, setLoading] = (0, import_react6.useState)(true);
+    (0, import_react6.useEffect)(() => {
+      const checkSession = async () => {
+        try {
+          const { data: { session } } = await supabase.auth.getSession();
+          if (session) {
+            setView("home");
+          }
+        } catch (error) {
+          console.error("Error checking session:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      checkSession();
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+        if (event === "SIGNED_IN" && session) {
+          setView("home");
+        } else if (event === "SIGNED_OUT") {
+          setView("login");
+        }
+      });
+      return () => {
+        subscription.unsubscribe();
+      };
+    }, []);
+    const handleLogout = async () => {
+      try {
+        await supabase.auth.signOut();
+        setView("login");
+      } catch (error) {
+        console.error("Error logging out:", error);
+      }
+    };
+    const handleLoginSuccess = () => {
+      setView("home");
+    };
+    if (loading) {
+      return /* @__PURE__ */ import_react6.default.createElement("div", { style: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        fontFamily: "sans-serif"
+      } }, "Loading...");
+    }
+    return /* @__PURE__ */ import_react6.default.createElement(import_react6.default.Fragment, null, view === "home" ? /* @__PURE__ */ import_react6.default.createElement(HomePage, { onLogout: handleLogout }) : view === "login" ? /* @__PURE__ */ import_react6.default.createElement(
+      LoginForm,
+      {
+        onSwitchToRegister: () => setView("register"),
+        onLoginSuccess: handleLoginSuccess
+      }
+    ) : /* @__PURE__ */ import_react6.default.createElement(RegisterForm, { onSwitchToLogin: () => setView("login") }));
   };
 
   // src/index.tsx
@@ -36164,7 +36429,7 @@ ${suffix}`;
     }
     const root = (0, import_client.createRoot)(container);
     root.render(
-      /* @__PURE__ */ import_react6.default.createElement(import_react6.default.StrictMode, null, /* @__PURE__ */ import_react6.default.createElement(App, null))
+      /* @__PURE__ */ import_react7.default.createElement(import_react7.default.StrictMode, null, /* @__PURE__ */ import_react7.default.createElement(App, null))
     );
     console.log("\u2705 Application initialized successfully");
   } catch (error) {

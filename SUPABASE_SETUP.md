@@ -59,7 +59,55 @@ Make sure your Supabase project has authentication enabled:
    - Site URL: `http://localhost:8080`
    - Redirect URLs: `http://localhost:8080/dashboard.html`
 
-## Database Setup (Optional)
+## Database Setup
+
+### 1. Motorcycle Shops Table (Required for Homepage)
+
+The homepage displays motorcycle repair shops from the `motorcycle_shops` table. Make sure this table exists:
+
+```sql
+-- Create motorcycle_shops table
+CREATE TABLE motorcycle_shops (
+  id BIGSERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  country TEXT NOT NULL,
+  city TEXT NOT NULL,
+  address TEXT,
+  phone TEXT,
+  website TEXT,
+  hours TEXT,
+  rating DECIMAL(3,2),
+  reviews_count INTEGER,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
+);
+
+-- Enable Row Level Security (optional - allows public read access)
+ALTER TABLE motorcycle_shops ENABLE ROW LEVEL SECURITY;
+
+-- Create a policy that allows anyone to read shops
+CREATE POLICY "Anyone can view motorcycle shops"
+  ON motorcycle_shops FOR SELECT
+  USING (true);
+```
+
+### 2. Required RPC Function
+
+Create a Postgres function to get distinct countries efficiently:
+
+```sql
+-- Create function to get distinct countries
+CREATE OR REPLACE FUNCTION get_distinct_countries()
+RETURNS TABLE(country TEXT) AS $$
+BEGIN
+  RETURN QUERY
+  SELECT DISTINCT motorcycle_shops.country
+  FROM motorcycle_shops
+  ORDER BY motorcycle_shops.country;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+### 3. Profiles Table (Optional)
 
 If you want to store additional user data, you can create a profiles table:
 
