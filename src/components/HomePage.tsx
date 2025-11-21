@@ -7,9 +7,10 @@ const PAGE_SIZE = 50;
 interface HomePageProps {
     onLogout?: () => void;
     onViewProfile?: () => void;
+    onViewBookingRequest?: () => void;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ onLogout, onViewProfile }) => {
+export const HomePage: React.FC<HomePageProps> = ({ onLogout, onViewProfile, onViewBookingRequest }) => {
     const [shops, setShops] = useState<MotorcycleShop[]>([]);
     const [displayedShops, setDisplayedShops] = useState<MotorcycleShop[]>([]);
     const [stats, setStats] = useState<ShopStats>({
@@ -306,6 +307,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onLogout, onViewProfile }) =
                     <option value="4.0">4.0+ Stars</option>
                     <option value="3.5">3.5+ Stars</option>
                 </select>
+                {onViewBookingRequest && (
+                    <button className="booking-request-button" onClick={onViewBookingRequest}>
+                        📅 Book Service
+                    </button>
+                )}
                 {onViewProfile && (
                     <button className="profile-button" onClick={onViewProfile}>
                         My Garage
