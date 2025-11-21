@@ -41,7 +41,8 @@ eu_motorcycle_shop_with_login/
 ├── build.js                  # Custom build script with env injection
 ├── package.json
 ├── tsconfig.json
-└── SUPABASE_SETUP.md         # Supabase configuration guide
+├── SUPABASE_SETUP.md         # Supabase configuration guide
+└── TROUBLESHOOTING.md        # Common issues and solutions
 ```
 
 ## Installation
@@ -141,3 +142,22 @@ Then open your browser to `http://localhost:8080`
 - **RegisterForm.tsx**: Registration form with email validation and password confirmation
 - **FormInput.tsx**: Reusable input field component with validation and error states
 - **LoginButton.tsx**: Generic submit button with loading states
+
+## Troubleshooting
+
+### Empty Page with Background?
+
+If you see only the gradient background with no login form:
+
+1. **Check browser console** (F12) for errors
+2. **Verify `.env` file exists** with your actual Supabase anon key (not the placeholder)
+3. **Rebuild the application**: `npm run build`
+4. **Restart the server**: `npm start`
+
+For detailed troubleshooting steps, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
+
+### Common Issues
+
+- **"Missing Supabase environment variables"**: Your `.env` file has placeholder values. Update with real credentials.
+- **Files not loading**: Run `npm run build` to regenerate bundle.js and CSS files
+- **Cached files**: Hard refresh with `Ctrl+F5` (Windows/Linux) or `Cmd+Shift+R` (Mac)
