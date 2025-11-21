@@ -3,8 +3,9 @@ import { supabase } from '../lib/supabase';
 import { LoginForm } from './LoginForm';
 import { RegisterForm } from './RegisterForm';
 import { HomePage } from './HomePage';
+import { BikerProfile } from './BikerProfile';
 
-type ViewMode = 'login' | 'register' | 'home';
+type ViewMode = 'login' | 'register' | 'home' | 'profile';
 
 export const App: React.FC = () => {
     const [view, setView] = useState<ViewMode>('login');
@@ -70,8 +71,16 @@ export const App: React.FC = () => {
 
     return (
         <>
-            {view === 'home' ? (
-                <HomePage onLogout={handleLogout} />
+            {view === 'profile' ? (
+                <BikerProfile
+                    onBack={() => setView('home')}
+                    onLogout={handleLogout}
+                />
+            ) : view === 'home' ? (
+                <HomePage
+                    onLogout={handleLogout}
+                    onViewProfile={() => setView('profile')}
+                />
             ) : view === 'login' ? (
                 <LoginForm
                     onSwitchToRegister={() => setView('register')}

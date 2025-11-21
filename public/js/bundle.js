@@ -1093,7 +1093,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState5(initialState) {
+          function useState6(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1105,7 +1105,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect4(create, deps) {
+          function useEffect5(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1888,7 +1888,7 @@
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect4;
+          exports.useEffect = useEffect5;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -1896,7 +1896,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState5;
+          exports.useState = useState6;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2392,9 +2392,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React8 = require_react();
+          var React9 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React8.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React9.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3999,7 +3999,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React8.Children.forEach(props.children, function(child) {
+                  React9.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -25449,11 +25449,11 @@ ${cause.stack}`;
   });
 
   // src/index.tsx
-  var import_react7 = __toESM(require_react());
+  var import_react8 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/components/App.tsx
-  var import_react6 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
 
   // node_modules/@supabase/functions-js/dist/module/FunctionsClient.js
   init_tslib_es6();
@@ -36159,7 +36159,7 @@ ${suffix}`;
   // src/components/HomePage.tsx
   var import_react5 = __toESM(require_react());
   var PAGE_SIZE = 50;
-  var HomePage = ({ onLogout }) => {
+  var HomePage = ({ onLogout, onViewProfile }) => {
     const [shops, setShops] = (0, import_react5.useState)([]);
     const [displayedShops, setDisplayedShops] = (0, import_react5.useState)([]);
     const [stats, setStats] = (0, import_react5.useState)({
@@ -36366,7 +36366,7 @@ ${suffix}`;
       /* @__PURE__ */ import_react5.default.createElement("option", { value: "4.5" }, "4.5+ Stars"),
       /* @__PURE__ */ import_react5.default.createElement("option", { value: "4.0" }, "4.0+ Stars"),
       /* @__PURE__ */ import_react5.default.createElement("option", { value: "3.5" }, "3.5+ Stars")
-    ), onLogout && /* @__PURE__ */ import_react5.default.createElement("button", { className: "logout-button", onClick: onLogout }, "Logout")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "content" }, error && /* @__PURE__ */ import_react5.default.createElement("div", { className: "error-message" }, /* @__PURE__ */ import_react5.default.createElement("strong", null, "Error:"), " ", error), loading && currentPage === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "loading" }, "Loading motorcycle shops...") : displayedShops.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "no-results" }, "No shops found matching your criteria.") : /* @__PURE__ */ import_react5.default.createElement("div", { className: "shops-grid" }, displayedShops.map((shop) => /* @__PURE__ */ import_react5.default.createElement("div", { key: shop.id, className: "shop-card" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-name", dangerouslySetInnerHTML: { __html: escapeHtml(shop.name) } }), /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-location" }, "\u{1F4CD} ", escapeHtml(shop.city), ", ", escapeHtml(shop.country)), shop.address && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F3E0}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.address) } })), shop.phone && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F4DE}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.phone) } })), shop.hours && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F550}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.hours) } })), shop.rating && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-rating" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "star" }, "\u2B50"), shop.rating, " (", shop.reviews_count, " reviews)"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-actions" }, /* @__PURE__ */ import_react5.default.createElement(
+    ), onViewProfile && /* @__PURE__ */ import_react5.default.createElement("button", { className: "profile-button", onClick: onViewProfile }, "My Garage"), onLogout && /* @__PURE__ */ import_react5.default.createElement("button", { className: "logout-button", onClick: onLogout }, "Logout")), /* @__PURE__ */ import_react5.default.createElement("div", { className: "content" }, error && /* @__PURE__ */ import_react5.default.createElement("div", { className: "error-message" }, /* @__PURE__ */ import_react5.default.createElement("strong", null, "Error:"), " ", error), loading && currentPage === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "loading" }, "Loading motorcycle shops...") : displayedShops.length === 0 ? /* @__PURE__ */ import_react5.default.createElement("div", { className: "no-results" }, "No shops found matching your criteria.") : /* @__PURE__ */ import_react5.default.createElement("div", { className: "shops-grid" }, displayedShops.map((shop) => /* @__PURE__ */ import_react5.default.createElement("div", { key: shop.id, className: "shop-card" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-name", dangerouslySetInnerHTML: { __html: escapeHtml(shop.name) } }), /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-location" }, "\u{1F4CD} ", escapeHtml(shop.city), ", ", escapeHtml(shop.country)), shop.address && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F3E0}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.address) } })), shop.phone && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F4DE}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.phone) } })), shop.hours && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "icon" }, "\u{1F550}"), /* @__PURE__ */ import_react5.default.createElement("span", { dangerouslySetInnerHTML: { __html: escapeHtml(shop.hours) } })), shop.rating && /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-rating" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "star" }, "\u2B50"), shop.rating, " (", shop.reviews_count, " reviews)"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "shop-actions" }, /* @__PURE__ */ import_react5.default.createElement(
       "a",
       {
         href: getGoogleMapsUrl(shop),
@@ -36387,11 +36387,405 @@ ${suffix}`;
     ))))), hasMore && !loading && /* @__PURE__ */ import_react5.default.createElement("div", { className: "load-more" }, /* @__PURE__ */ import_react5.default.createElement("button", { onClick: handleLoadMore, disabled: loading }, loading ? "Loading..." : "Load More"))));
   };
 
+  // src/components/BikerProfile.tsx
+  var import_react6 = __toESM(require_react());
+
+  // src/types/biker-motorcycle.ts
+  var MOTORCYCLE_BRANDS = [
+    "Aprilia",
+    "BMW",
+    "Benelli",
+    "Ducati",
+    "Harley-Davidson",
+    "Honda",
+    "Husqvarna",
+    "Indian",
+    "Kawasaki",
+    "KTM",
+    "Moto Guzzi",
+    "MV Agusta",
+    "Royal Enfield",
+    "Suzuki",
+    "Triumph",
+    "Yamaha",
+    "Other"
+  ];
+
+  // src/components/BikerProfile.tsx
+  var BikerProfile = ({ onBack, onLogout }) => {
+    const [motorcycles, setMotorcycles] = (0, import_react6.useState)([]);
+    const [loading, setLoading] = (0, import_react6.useState)(true);
+    const [error, setError] = (0, import_react6.useState)(null);
+    const [showForm, setShowForm] = (0, import_react6.useState)(false);
+    const [editingId, setEditingId] = (0, import_react6.useState)(null);
+    const [userEmail, setUserEmail] = (0, import_react6.useState)("");
+    const [formData, setFormData] = (0, import_react6.useState)({
+      brand: "",
+      model: "",
+      year: "",
+      mileage: "",
+      mileage_unit: "km",
+      engine_size: "",
+      color: "",
+      license_plate: "",
+      vin: "",
+      purchase_date: "",
+      current_owner: true,
+      condition: "",
+      notes: ""
+    });
+    const [formErrors, setFormErrors] = (0, import_react6.useState)({});
+    const [submitLoading, setSubmitLoading] = (0, import_react6.useState)(false);
+    (0, import_react6.useEffect)(() => {
+      loadUserData();
+      loadMotorcycles();
+    }, []);
+    const loadUserData = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user?.email) {
+        setUserEmail(user.email);
+      }
+    };
+    const loadMotorcycles = async () => {
+      try {
+        setLoading(true);
+        const { data, error: fetchError } = await supabase.from("biker_motorcycles").select("*").order("created_at", { ascending: false });
+        if (fetchError)
+          throw fetchError;
+        setMotorcycles(data || []);
+        setError(null);
+      } catch (err) {
+        console.error("Error loading motorcycles:", err);
+        setError(err instanceof Error ? err.message : "Failed to load motorcycles");
+      } finally {
+        setLoading(false);
+      }
+    };
+    const resetForm = () => {
+      setFormData({
+        brand: "",
+        model: "",
+        year: "",
+        mileage: "",
+        mileage_unit: "km",
+        engine_size: "",
+        color: "",
+        license_plate: "",
+        vin: "",
+        purchase_date: "",
+        current_owner: true,
+        condition: "",
+        notes: ""
+      });
+      setFormErrors({});
+      setEditingId(null);
+      setShowForm(false);
+    };
+    const validateForm = () => {
+      const errors = {};
+      if (!formData.brand.trim()) {
+        errors.brand = "Brand is required";
+      }
+      if (!formData.model.trim()) {
+        errors.model = "Model is required";
+      }
+      if (!formData.year) {
+        errors.year = "Year is required";
+      } else {
+        const year = parseInt(formData.year);
+        if (isNaN(year) || year < 1900 || year > (/* @__PURE__ */ new Date()).getFullYear() + 1) {
+          errors.year = "Please enter a valid year";
+        }
+      }
+      if (formData.mileage && parseInt(formData.mileage) < 0) {
+        errors.mileage = "Mileage cannot be negative";
+      }
+      if (formData.engine_size && parseInt(formData.engine_size) <= 0) {
+        errors.engine_size = "Engine size must be positive";
+      }
+      setFormErrors(errors);
+      return Object.keys(errors).length === 0;
+    };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      if (!validateForm()) {
+        return;
+      }
+      setSubmitLoading(true);
+      setError(null);
+      try {
+        const motorcycleData = {
+          brand: formData.brand.trim(),
+          model: formData.model.trim(),
+          year: parseInt(formData.year),
+          mileage: formData.mileage ? parseInt(formData.mileage) : null,
+          mileage_unit: formData.mileage_unit,
+          engine_size: formData.engine_size ? parseInt(formData.engine_size) : null,
+          color: formData.color.trim() || null,
+          license_plate: formData.license_plate.trim() || null,
+          vin: formData.vin.trim() || null,
+          purchase_date: formData.purchase_date || null,
+          current_owner: formData.current_owner,
+          condition: formData.condition || null,
+          notes: formData.notes.trim() || null
+        };
+        if (editingId) {
+          const { error: updateError } = await supabase.from("biker_motorcycles").update(motorcycleData).eq("id", editingId);
+          if (updateError)
+            throw updateError;
+        } else {
+          const { data: { user } } = await supabase.auth.getUser();
+          if (!user) {
+            throw new Error("User not authenticated");
+          }
+          const { error: insertError } = await supabase.from("biker_motorcycles").insert([{
+            ...motorcycleData,
+            user_id: user.id
+          }]);
+          if (insertError)
+            throw insertError;
+        }
+        await loadMotorcycles();
+        resetForm();
+      } catch (err) {
+        console.error("Error saving motorcycle:", err);
+        setError(err instanceof Error ? err.message : "Failed to save motorcycle");
+      } finally {
+        setSubmitLoading(false);
+      }
+    };
+    const handleEdit = (motorcycle) => {
+      setFormData({
+        brand: motorcycle.brand,
+        model: motorcycle.model,
+        year: motorcycle.year.toString(),
+        mileage: motorcycle.mileage?.toString() || "",
+        mileage_unit: motorcycle.mileage_unit,
+        engine_size: motorcycle.engine_size?.toString() || "",
+        color: motorcycle.color || "",
+        license_plate: motorcycle.license_plate || "",
+        vin: motorcycle.vin || "",
+        purchase_date: motorcycle.purchase_date || "",
+        current_owner: motorcycle.current_owner,
+        condition: motorcycle.condition || "",
+        notes: motorcycle.notes || ""
+      });
+      setEditingId(motorcycle.id);
+      setShowForm(true);
+    };
+    const handleDelete = async (id) => {
+      if (!confirm("Are you sure you want to delete this motorcycle?")) {
+        return;
+      }
+      try {
+        const { error: deleteError } = await supabase.from("biker_motorcycles").delete().eq("id", id);
+        if (deleteError)
+          throw deleteError;
+        await loadMotorcycles();
+      } catch (err) {
+        console.error("Error deleting motorcycle:", err);
+        setError(err instanceof Error ? err.message : "Failed to delete motorcycle");
+      }
+    };
+    const handleInputChange = (e) => {
+      const { name, value, type } = e.target;
+      setFormData((prev) => ({
+        ...prev,
+        [name]: type === "checkbox" ? e.target.checked : value
+      }));
+      if (formErrors[name]) {
+        setFormErrors((prev) => {
+          const newErrors = { ...prev };
+          delete newErrors[name];
+          return newErrors;
+        });
+      }
+    };
+    return /* @__PURE__ */ import_react6.default.createElement("div", { className: "biker-profile-container" }, /* @__PURE__ */ import_react6.default.createElement("header", { className: "profile-header" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "header-content" }, /* @__PURE__ */ import_react6.default.createElement("h1", null, "\u{1F3CD}\uFE0F My Motorcycle Garage"), /* @__PURE__ */ import_react6.default.createElement("p", { className: "user-email" }, userEmail)), /* @__PURE__ */ import_react6.default.createElement("div", { className: "header-actions" }, onBack && /* @__PURE__ */ import_react6.default.createElement("button", { className: "back-button", onClick: onBack }, "\u2190 Back to Directory"), onLogout && /* @__PURE__ */ import_react6.default.createElement("button", { className: "logout-button", onClick: onLogout }, "Logout"))), /* @__PURE__ */ import_react6.default.createElement("div", { className: "profile-content" }, error && /* @__PURE__ */ import_react6.default.createElement("div", { className: "error-message" }, /* @__PURE__ */ import_react6.default.createElement("strong", null, "Error:"), " ", error, /* @__PURE__ */ import_react6.default.createElement("button", { onClick: () => setError(null) }, "\xD7")), /* @__PURE__ */ import_react6.default.createElement("div", { className: "add-motorcycle-section" }, !showForm ? /* @__PURE__ */ import_react6.default.createElement(
+      "button",
+      {
+        className: "add-motorcycle-button",
+        onClick: () => setShowForm(true)
+      },
+      "+ Add New Motorcycle"
+    ) : /* @__PURE__ */ import_react6.default.createElement("div", { className: "motorcycle-form-container" }, /* @__PURE__ */ import_react6.default.createElement("h2", null, editingId ? "Edit Motorcycle" : "Add New Motorcycle"), /* @__PURE__ */ import_react6.default.createElement("form", { onSubmit: handleSubmit, className: "motorcycle-form" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-grid" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-group" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "brand" }, "Brand ", /* @__PURE__ */ import_react6.default.createElement("span", { className: "required" }, "*")), /* @__PURE__ */ import_react6.default.createElement(
+      "select",
+      {
+        id: "brand",
+        name: "brand",
+        value: formData.brand,
+        onChange: handleInputChange,
+        required: true
+      },
+      /* @__PURE__ */ import_react6.default.createElement("option", { value: "" }, "Select Brand"),
+      MOTORCYCLE_BRANDS.map((brand) => /* @__PURE__ */ import_react6.default.createElement("option", { key: brand, value: brand }, brand))
+    ), formErrors.brand && /* @__PURE__ */ import_react6.default.createElement("span", { className: "error-text" }, formErrors.brand)), /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-group" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "model" }, "Model ", /* @__PURE__ */ import_react6.default.createElement("span", { className: "required" }, "*")), /* @__PURE__ */ import_react6.default.createElement(
+      "input",
+      {
+        type: "text",
+        id: "model",
+        name: "model",
+        value: formData.model,
+        onChange: handleInputChange,
+        placeholder: "e.g., R1250GS, Ninja 650",
+        required: true
+      }
+    ), formErrors.model && /* @__PURE__ */ import_react6.default.createElement("span", { className: "error-text" }, formErrors.model)), /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-group" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "year" }, "Year ", /* @__PURE__ */ import_react6.default.createElement("span", { className: "required" }, "*")), /* @__PURE__ */ import_react6.default.createElement(
+      "input",
+      {
+        type: "number",
+        id: "year",
+        name: "year",
+        value: formData.year,
+        onChange: handleInputChange,
+        min: "1900",
+        max: (/* @__PURE__ */ new Date()).getFullYear() + 1,
+        placeholder: "e.g., 2023",
+        required: true
+      }
+    ), formErrors.year && /* @__PURE__ */ import_react6.default.createElement("span", { className: "error-text" }, formErrors.year)), /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-group" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "engine_size" }, "Engine Size (cc)"), /* @__PURE__ */ import_react6.default.createElement(
+      "input",
+      {
+        type: "number",
+        id: "engine_size",
+        name: "engine_size",
+        value: formData.engine_size,
+        onChange: handleInputChange,
+        min: "1",
+        placeholder: "e.g., 650"
+      }
+    ), formErrors.engine_size && /* @__PURE__ */ import_react6.default.createElement("span", { className: "error-text" }, formErrors.engine_size)), /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-group form-group-mileage" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "mileage" }, "Mileage"), /* @__PURE__ */ import_react6.default.createElement("div", { className: "mileage-input-group" }, /* @__PURE__ */ import_react6.default.createElement(
+      "input",
+      {
+        type: "number",
+        id: "mileage",
+        name: "mileage",
+        value: formData.mileage,
+        onChange: handleInputChange,
+        min: "0",
+        placeholder: "e.g., 15000"
+      }
+    ), /* @__PURE__ */ import_react6.default.createElement(
+      "select",
+      {
+        name: "mileage_unit",
+        value: formData.mileage_unit,
+        onChange: handleInputChange,
+        className: "mileage-unit"
+      },
+      /* @__PURE__ */ import_react6.default.createElement("option", { value: "km" }, "km"),
+      /* @__PURE__ */ import_react6.default.createElement("option", { value: "miles" }, "miles")
+    )), formErrors.mileage && /* @__PURE__ */ import_react6.default.createElement("span", { className: "error-text" }, formErrors.mileage)), /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-group" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "color" }, "Color"), /* @__PURE__ */ import_react6.default.createElement(
+      "input",
+      {
+        type: "text",
+        id: "color",
+        name: "color",
+        value: formData.color,
+        onChange: handleInputChange,
+        placeholder: "e.g., Black, Red"
+      }
+    )), /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-group" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "license_plate" }, "License Plate"), /* @__PURE__ */ import_react6.default.createElement(
+      "input",
+      {
+        type: "text",
+        id: "license_plate",
+        name: "license_plate",
+        value: formData.license_plate,
+        onChange: handleInputChange,
+        placeholder: "e.g., ABC-123"
+      }
+    )), /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-group" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "vin" }, "VIN"), /* @__PURE__ */ import_react6.default.createElement(
+      "input",
+      {
+        type: "text",
+        id: "vin",
+        name: "vin",
+        value: formData.vin,
+        onChange: handleInputChange,
+        placeholder: "17-character VIN",
+        maxLength: 17
+      }
+    )), /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-group" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "purchase_date" }, "Purchase Date"), /* @__PURE__ */ import_react6.default.createElement(
+      "input",
+      {
+        type: "date",
+        id: "purchase_date",
+        name: "purchase_date",
+        value: formData.purchase_date,
+        onChange: handleInputChange
+      }
+    )), /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-group" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "condition" }, "Condition"), /* @__PURE__ */ import_react6.default.createElement(
+      "select",
+      {
+        id: "condition",
+        name: "condition",
+        value: formData.condition,
+        onChange: handleInputChange
+      },
+      /* @__PURE__ */ import_react6.default.createElement("option", { value: "" }, "Select Condition"),
+      /* @__PURE__ */ import_react6.default.createElement("option", { value: "excellent" }, "Excellent"),
+      /* @__PURE__ */ import_react6.default.createElement("option", { value: "good" }, "Good"),
+      /* @__PURE__ */ import_react6.default.createElement("option", { value: "fair" }, "Fair"),
+      /* @__PURE__ */ import_react6.default.createElement("option", { value: "poor" }, "Poor")
+    )), /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-group form-group-checkbox" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "current_owner" }, /* @__PURE__ */ import_react6.default.createElement(
+      "input",
+      {
+        type: "checkbox",
+        id: "current_owner",
+        name: "current_owner",
+        checked: formData.current_owner,
+        onChange: handleInputChange
+      }
+    ), "Current Owner")), /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-group form-group-full" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "notes" }, "Notes"), /* @__PURE__ */ import_react6.default.createElement(
+      "textarea",
+      {
+        id: "notes",
+        name: "notes",
+        value: formData.notes,
+        onChange: handleInputChange,
+        rows: 3,
+        placeholder: "Any additional information about your motorcycle..."
+      }
+    ))), /* @__PURE__ */ import_react6.default.createElement("div", { className: "form-actions" }, /* @__PURE__ */ import_react6.default.createElement(
+      "button",
+      {
+        type: "submit",
+        className: "submit-button",
+        disabled: submitLoading
+      },
+      submitLoading ? "Saving..." : editingId ? "Update Motorcycle" : "Add Motorcycle"
+    ), /* @__PURE__ */ import_react6.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "cancel-button",
+        onClick: resetForm,
+        disabled: submitLoading
+      },
+      "Cancel"
+    ))))), /* @__PURE__ */ import_react6.default.createElement("div", { className: "motorcycles-list" }, /* @__PURE__ */ import_react6.default.createElement("h2", null, "Your Motorcycles (", motorcycles.length, ")"), loading ? /* @__PURE__ */ import_react6.default.createElement("div", { className: "loading" }, "Loading your motorcycles...") : motorcycles.length === 0 ? /* @__PURE__ */ import_react6.default.createElement("div", { className: "no-motorcycles" }, /* @__PURE__ */ import_react6.default.createElement("p", null, "You haven't added any motorcycles yet."), /* @__PURE__ */ import_react6.default.createElement("p", null, 'Click "Add New Motorcycle" to get started!')) : /* @__PURE__ */ import_react6.default.createElement("div", { className: "motorcycles-grid" }, motorcycles.map((motorcycle) => /* @__PURE__ */ import_react6.default.createElement("div", { key: motorcycle.id, className: "motorcycle-card" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "motorcycle-header" }, /* @__PURE__ */ import_react6.default.createElement("h3", null, motorcycle.brand, " ", motorcycle.model), /* @__PURE__ */ import_react6.default.createElement("span", { className: "year-badge" }, motorcycle.year)), /* @__PURE__ */ import_react6.default.createElement("div", { className: "motorcycle-details" }, motorcycle.engine_size && /* @__PURE__ */ import_react6.default.createElement("div", { className: "detail-item" }, /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-label" }, "Engine:"), /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-value" }, motorcycle.engine_size, " cc")), motorcycle.mileage && /* @__PURE__ */ import_react6.default.createElement("div", { className: "detail-item" }, /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-label" }, "Mileage:"), /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-value" }, motorcycle.mileage.toLocaleString(), " ", motorcycle.mileage_unit)), motorcycle.color && /* @__PURE__ */ import_react6.default.createElement("div", { className: "detail-item" }, /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-label" }, "Color:"), /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-value" }, motorcycle.color)), motorcycle.license_plate && /* @__PURE__ */ import_react6.default.createElement("div", { className: "detail-item" }, /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-label" }, "Plate:"), /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-value" }, motorcycle.license_plate)), motorcycle.condition && /* @__PURE__ */ import_react6.default.createElement("div", { className: "detail-item" }, /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-label" }, "Condition:"), /* @__PURE__ */ import_react6.default.createElement("span", { className: `condition-badge condition-${motorcycle.condition}` }, motorcycle.condition)), motorcycle.purchase_date && /* @__PURE__ */ import_react6.default.createElement("div", { className: "detail-item" }, /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-label" }, "Purchased:"), /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-value" }, new Date(motorcycle.purchase_date).toLocaleDateString())), /* @__PURE__ */ import_react6.default.createElement("div", { className: "detail-item" }, /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-label" }, "Status:"), /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-value" }, motorcycle.current_owner ? "\u2713 Current Owner" : "Previous Owner")), motorcycle.notes && /* @__PURE__ */ import_react6.default.createElement("div", { className: "detail-item detail-notes" }, /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-label" }, "Notes:"), /* @__PURE__ */ import_react6.default.createElement("span", { className: "detail-value" }, motorcycle.notes))), /* @__PURE__ */ import_react6.default.createElement("div", { className: "motorcycle-actions" }, /* @__PURE__ */ import_react6.default.createElement(
+      "button",
+      {
+        className: "edit-button",
+        onClick: () => handleEdit(motorcycle)
+      },
+      "Edit"
+    ), /* @__PURE__ */ import_react6.default.createElement(
+      "button",
+      {
+        className: "delete-button",
+        onClick: () => handleDelete(motorcycle.id)
+      },
+      "Delete"
+    ))))))));
+  };
+
   // src/components/App.tsx
   var App = () => {
-    const [view, setView] = (0, import_react6.useState)("login");
-    const [loading, setLoading] = (0, import_react6.useState)(true);
-    (0, import_react6.useEffect)(() => {
+    const [view, setView] = (0, import_react7.useState)("login");
+    const [loading, setLoading] = (0, import_react7.useState)(true);
+    (0, import_react7.useEffect)(() => {
       const checkSession = async () => {
         try {
           const { data: { session } } = await supabase.auth.getSession();
@@ -36428,7 +36822,7 @@ ${suffix}`;
       setView("home");
     };
     if (loading) {
-      return /* @__PURE__ */ import_react6.default.createElement("div", { style: {
+      return /* @__PURE__ */ import_react7.default.createElement("div", { style: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -36436,13 +36830,25 @@ ${suffix}`;
         fontFamily: "sans-serif"
       } }, "Loading...");
     }
-    return /* @__PURE__ */ import_react6.default.createElement(import_react6.default.Fragment, null, view === "home" ? /* @__PURE__ */ import_react6.default.createElement(HomePage, { onLogout: handleLogout }) : view === "login" ? /* @__PURE__ */ import_react6.default.createElement(
+    return /* @__PURE__ */ import_react7.default.createElement(import_react7.default.Fragment, null, view === "profile" ? /* @__PURE__ */ import_react7.default.createElement(
+      BikerProfile,
+      {
+        onBack: () => setView("home"),
+        onLogout: handleLogout
+      }
+    ) : view === "home" ? /* @__PURE__ */ import_react7.default.createElement(
+      HomePage,
+      {
+        onLogout: handleLogout,
+        onViewProfile: () => setView("profile")
+      }
+    ) : view === "login" ? /* @__PURE__ */ import_react7.default.createElement(
       LoginForm,
       {
         onSwitchToRegister: () => setView("register"),
         onLoginSuccess: handleLoginSuccess
       }
-    ) : /* @__PURE__ */ import_react6.default.createElement(RegisterForm, { onSwitchToLogin: () => setView("login") }));
+    ) : /* @__PURE__ */ import_react7.default.createElement(RegisterForm, { onSwitchToLogin: () => setView("login") }));
   };
 
   // src/index.tsx
@@ -36453,7 +36859,7 @@ ${suffix}`;
     }
     const root = (0, import_client.createRoot)(container);
     root.render(
-      /* @__PURE__ */ import_react7.default.createElement(import_react7.default.StrictMode, null, /* @__PURE__ */ import_react7.default.createElement(App, null))
+      /* @__PURE__ */ import_react8.default.createElement(import_react8.default.StrictMode, null, /* @__PURE__ */ import_react8.default.createElement(App, null))
     );
     console.log("\u2705 Application initialized successfully");
   } catch (error) {

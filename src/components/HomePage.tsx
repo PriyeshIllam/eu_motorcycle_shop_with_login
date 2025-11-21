@@ -6,9 +6,10 @@ const PAGE_SIZE = 50;
 
 interface HomePageProps {
     onLogout?: () => void;
+    onViewProfile?: () => void;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ onLogout }) => {
+export const HomePage: React.FC<HomePageProps> = ({ onLogout, onViewProfile }) => {
     const [shops, setShops] = useState<MotorcycleShop[]>([]);
     const [displayedShops, setDisplayedShops] = useState<MotorcycleShop[]>([]);
     const [stats, setStats] = useState<ShopStats>({
@@ -305,6 +306,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onLogout }) => {
                     <option value="4.0">4.0+ Stars</option>
                     <option value="3.5">3.5+ Stars</option>
                 </select>
+                {onViewProfile && (
+                    <button className="profile-button" onClick={onViewProfile}>
+                        My Garage
+                    </button>
+                )}
                 {onLogout && (
                     <button className="logout-button" onClick={onLogout}>
                         Logout
