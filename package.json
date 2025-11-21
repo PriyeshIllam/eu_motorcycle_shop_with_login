@@ -4,10 +4,10 @@
   "description": "Motorcycle shop login application with React",
   "main": "index.js",
   "scripts": {
-    "build:css": "npx sass src/styles/login.scss public/css/login.css && npx sass src/styles/homepage.scss public/css/homepage.css && npx sass src/styles/biker-profile.scss public/css/biker-profile.css",
+    "build:css": "npx sass src/styles/login.scss public/css/login.css && npx sass src/styles/homepage.scss public/css/homepage.css && npx sass src/styles/biker-profile.scss public/css/biker-profile.css && npx sass src/styles/booking-request.scss public/css/booking-request.css",
     "build:js": "node build.js",
     "build": "npm run build:css && npm run build:js",
-    "watch:css": "npx sass --watch src/styles/login.scss:public/css/login.css src/styles/homepage.scss:public/css/homepage.css src/styles/biker-profile.scss:public/css/biker-profile.css",
+    "watch:css": "npx sass --watch src/styles/login.scss:public/css/login.css src/styles/homepage.scss:public/css/homepage.css src/styles/biker-profile.scss:public/css/biker-profile.css src/styles/booking-request.scss:public/css/booking-request.css",
     "watch:js": "node build.js --watch",
     "dev": "npm run build && npm run watch:css & npm run watch:js",
     "start": "npm run build && npx http-server public -p 8080"
