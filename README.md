@@ -39,9 +39,13 @@ eu_motorcycle_shop_with_login/
 ├── .env                      # Environment variables (gitignored)
 ├── .env.example              # Environment variables template
 ├── build.js                  # Custom build script with env injection
+├── vercel.json               # Vercel deployment configuration
 ├── package.json
 ├── tsconfig.json
-└── SUPABASE_SETUP.md         # Supabase configuration guide
+├── SUPABASE_SETUP.md         # Supabase configuration guide
+├── VERCEL_DEPLOYMENT.md      # Vercel deployment guide
+├── DEPLOYMENT_CHECKLIST.md   # Quick deployment checklist
+└── TROUBLESHOOTING.md        # Common issues and solutions
 ```
 
 ## Installation
@@ -141,3 +145,45 @@ Then open your browser to `http://localhost:8080`
 - **RegisterForm.tsx**: Registration form with email validation and password confirmation
 - **FormInput.tsx**: Reusable input field component with validation and error states
 - **LoginButton.tsx**: Generic submit button with loading states
+
+## Deployment
+
+### Deploying to Vercel
+
+This application is ready to deploy to Vercel:
+
+1. **Connect your repository** to Vercel
+2. **Configure build settings**:
+   - Build Command: `npm run build`
+   - Output Directory: `public`
+3. **Add environment variables** (CRITICAL):
+   - `SUPABASE_URL` = `https://mpizntvbwkktnzmnjtep.supabase.co`
+   - `SUPABASE_ANON_KEY` = Your actual Supabase anon key
+4. **Deploy!**
+
+**Important**: Without environment variables, you'll get an empty page on Vercel.
+
+📖 **See [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md) for complete step-by-step instructions**
+
+✅ **Quick Reference**: [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md)
+
+## Troubleshooting
+
+### Empty Page with Background?
+
+If you see only the gradient background with no login form:
+
+1. **Check browser console** (F12) for errors
+2. **Verify `.env` file exists** with your actual Supabase anon key (not the placeholder)
+3. **Rebuild the application**: `npm run build`
+4. **Restart the server**: `npm start`
+
+For detailed troubleshooting steps, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
+
+### Common Issues
+
+- **"process is not defined" error**: You need to rebuild after updating `.env` - Run `npm run build` then restart
+- **"Missing Supabase environment variables"**: Your `.env` file has placeholder values. Update with real credentials and rebuild
+- **Files not loading**: Run `npm run build` to regenerate bundle.js and CSS files
+- **Cached files**: Hard refresh with `Ctrl+F5` (Windows/Linux) or `Cmd+Shift+R` (Mac)
+- **Empty page on Vercel**: Environment variables not set in Vercel dashboard

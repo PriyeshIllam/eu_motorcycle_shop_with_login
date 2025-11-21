@@ -6,11 +6,14 @@ const SUPABASE_URL = process.env.SUPABASE_URL || '';
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || '';
 
 // Validate environment variables
-if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-    console.error('Missing Supabase environment variables. Please check your .env file.');
+if (!SUPABASE_URL || !SUPABASE_ANON_KEY || SUPABASE_ANON_KEY === 'YOUR_SUPABASE_ANON_KEY') {
+    console.error('❌ Missing or invalid Supabase environment variables.');
+    console.error('📝 Please update your .env file with your actual Supabase credentials.');
+    console.error('💡 See SUPABASE_SETUP.md for instructions.');
 }
 
 // Create Supabase client
+// Even with invalid credentials, we create the client to allow the app to render
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Type definitions for authentication
